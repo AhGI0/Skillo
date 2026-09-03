@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Skillio — Learn anything. Follow the right path." />
+  <title>Skillio — Learning Roadmap Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="toastRegion" class="toast-region" aria-live="polite"></div>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#home" data-nav="home">
+        <span class="brand-mark">S</span><span>Skillio</span>
+      </a>
+      <nav class="desktop-nav" aria-label="Primary">
+        <a href="#explore" data-nav="explore">Explore</a>
+        <a href="#roadmaps" data-nav="roadmaps">Roadmaps</a>
+        <a href="#journey" data-nav="journey">My Journey</a>
+        <a href="#resources" data-nav="resources">Resources</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="themeToggle" title="Toggle theme" aria-label="Toggle theme">☾</button>
+        <button class="btn btn-secondary nav-journey" data-nav="journey">My Journey</button>
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="mobile-menu">
+      <a href="#explore" data-nav="explore">Explore</a>
+      <a href="#roadmaps" data-nav="roadmaps">Roadmaps</a>
+      <a href="#journey" data-nav="journey">My Journey</a>
+      <a href="#resources" data-nav="resources">Resources</a>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-glow glow-a"></div>
+      <div class="hero-glow glow-b"></div>
+      <div class="container hero-inner">
+        <div class="eyebrow"><span class="pulse-dot"></span> Your personal learning operating system</div>
+        <h1>Learn anything.<br><span>Follow the right path.</span></h1>
+        <p class="hero-copy">Skillio turns your learning goal into a structured roadmap and guides you one step at a time — from first principles to real projects and job readiness.</p>
+
+        <form id="heroForm" class="goal-box">
+          <div class="goal-icon">✦</div>
+          <input id="goalInput" autocomplete="off" placeholder='What do you want to learn? e.g. "I want to become a full-stack developer"' />
+          <button class="btn btn-primary" type="submit">Build My Roadmap <span>→</span></button>
+        </form>
+        <div class="suggestions">
+          <span>Popular:</span>
+          <button type="button" data-goal="Frontend Development">Frontend Development</button>
+          <button type="button" data-goal="AI Engineering">AI Engineering</button>
+          <button type="button" data-goal="Data Science">Data Science</button>
+          <button type="button" data-goal="Cybersecurity">Cybersecurity</button>
+          <button type="button" data-goal="UX Design">UI/UX Design</button>
+        </div>
+
+        <div class="hero-stats">
+          <div><strong>14</strong><span>starter paths</span></div>
+          <div><strong>150+</strong><span>learning nodes</span></div>
+          <div><strong>100%</strong><span>local & private</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="journey" class="section journey-section">
+      <div class="container">
+        <div class="section-heading split">
+          <div>
+            <div class="eyebrow">Your command center</div>
+            <h2>My Journey</h2>
+            <p>Your progress is automatically saved in this browser.</p>
+          </div>
+          <div class="heading-actions">
+            <button class="btn btn-secondary" id="resetBtn">Reset Journey</button>
+            <button class="btn btn-primary" data-nav="roadmaps">Open Roadmap →</button>
+          </div>
+        </div>
+
+        <div id="journeyEmpty" class="empty-state hidden">
+          <div class="empty-icon">◎</div>
+          <h3>No roadmap yet</h3>
+          <p>Tell Skillio what you want to become and your first step will appear here.</p>
+          <button class="btn btn-primary" data-scroll="home">Build my first roadmap →</button>
+        </div>
+
+        <div id="journeyContent" class="hidden">
+          <div class="journey-grid">
+            <div class="panel continue-panel">
+              <div class="panel-kicker">Continue learning</div>
+              <div class="continue-main">
+                <div class="continue-badge" id="continueBadge">JS</div>
+                <div>
+                  <span class="muted" id="continuePhase">JavaScript</span>
+                  <h3 id="continueTitle">Functions</h3>
+                  <p id="continueDesc">Build reusable blocks of logic.</p>
+                </div>
+              </div>
+              <div class="progress-line"><span id="continueProgressBar"></span></div>
+              <div class="continue-meta">
+                <span id="continueProgressText">0% overall</span>
+                <span id="continueDuration">45 min</span>
+              </div>
+              <button class="btn btn-primary full" id="continueBtn">Continue Learning →</button>
+            </div>
+
+            <div class="stats-grid">
+              <div class="stat-card"><span class="stat-icon">◈</span><div><small>Overall progress</small><strong id="statOverall">0%</strong></div></div>
+              <div class="stat-card"><span class="stat-icon">✓</span><div><small>Completed</small><strong id="statCompleted">0 / 0</strong></div></div>
+              <div class="stat-card"><span class="stat-icon">◆</span><div><small>Projects</small><strong id="statProjects">0 / 0</strong></div></div>
+              <div class="stat-card"><span class="stat-icon">◷</span><div><small>Learning time</small><strong id="statHours">0h</strong></div></div>
+            </div>
+          </div>
+
+          <div class="phase-overview">
+            <div class="panel-title-row">
+              <div><span class="panel-kicker">Roadmap pulse</span><h3 id="journeyRoadmapTitle">Frontend Developer</h3></div>
+              <div class="goal-pill" id="journeyGoalPill">Career path</div>
+            </div>
+            <div id="phaseBars" class="phase-bars"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="roadmaps" class="section roadmap-section">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">The learning path</div>
+          <h2 id="roadmapTitle">Frontend Developer Roadmap</h2>
+          <p id="roadmapSubtitle">A structured journey from foundations to job-ready projects.</p>
+        </div>
+        <div class="roadmap-layout">
+          <aside class="roadmap-sidebar panel">
+            <div class="panel-kicker">Path overview</div>
+            <h3 id="sidebarGoal">Frontend Developer</h3>
+            <p id="sidebarGoalDescription">Master the skills to build modern web experiences.</p>
+            <div class="overall-card">
+              <div><span>Overall progress</span><strong id="roadmapOverall">0%</strong></div>
+              <div class="progress-line"><span id="roadmapOverallBar"></span></div>
+            </div>
+            <div class="current-step">
+              <span class="tiny-label">NEXT STEP</span>
+              <strong id="sidebarNext">HTML Fundamentals</strong>
+              <button class="text-btn" id="sidebarContinue">Start →</button>
+            </div>
+          </aside>
+          <div id="roadmapCanvas" class="roadmap-canvas"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="explore" class="section explore-section">
+      <div class="container">
+        <div class="section-heading split">
+          <div><div class="eyebrow">Explore paths</div><h2>Choose a direction. Start with clarity.</h2></div>
+          <div class="search-wrap"><span>⌕</span><input id="pathSearch" placeholder="Search roadmaps…" /></div>
+        </div>
+        <div id="pathGrid" class="path-grid"></div>
+      </div>
+    </section>
+
+    <section class="section ai-section">
+      <div class="container ai-shell">
+        <div class="ai-copy">
+          <div class="eyebrow">Meet Skillio AI</div>
+          <h2>From a vague goal to a clear path.</h2>
+          <p>Describe the outcome you want. Skillio's demo engine maps it to a practical sequence of phases, prerequisites and projects.</p>
+          <form id="aiForm" class="ai-input-row">
+            <input id="aiInput" placeholder="I want to become an AI engineer and get a remote job." />
+            <button class="btn btn-primary">Generate</button>
+          </form>
+          <small class="disclaimer">Demo logic runs locally. A real AI API can replace it later.</small>
+        </div>
+        <div class="ai-preview panel">
+          <div class="ai-preview-header"><span class="ai-orb">✦</span><div><strong>Your personalized roadmap</strong><small id="aiPreviewHint">Generated from your goal</small></div></div>
+          <div id="aiRoadmapPreview" class="ai-roadmap-preview"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="resources" class="section resources-section">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Learn from the best</div>
+          <h2>Real resources. Right when you need them.</h2>
+          <p id="resourceSectionCopy">Your current path surfaces useful documentation, courses, practice and projects.</p>
+        </div>
+        <div id="resourceGrid" class="resource-grid"></div>
+      </div>
+    </section>
+
+    <section class="section how-section">
+      <div class="container">
+        <div class="section-heading center"><div class="eyebrow">How it works</div><h2>Always know what comes next.</h2></div>
+        <div class="how-grid">
+          <div class="how-card"><span>01</span><div class="how-icon">⌁</div><h3>Choose your goal</h3><p>Tell Skillio what you want to learn or who you want to become.</p></div>
+          <div class="how-card"><span>02</span><div class="how-icon">◫</div><h3>Get your roadmap</h3><p>Skills are ordered into phases with prerequisites and practical projects.</p></div>
+          <div class="how-card"><span>03</span><div class="how-icon">✓</div><h3>Keep moving</h3><p>Complete a node, and Skillio automatically updates your next step.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta-section">
+      <div class="container cta-card">
+        <div><div class="eyebrow">Build your path</div><h2>Stop wondering what to learn next.</h2><p>Start with one goal. Skillio will turn it into a journey.</p></div>
+        <button class="btn btn-primary" data-scroll="home">Create My Roadmap →</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner"><div class="brand"><span class="brand-mark">S</span><span>Skillio</span></div><span>Learn anything. Follow the right path.</span><span>© 2026 Skillio prototype</span></div>
+  </footer>
+
+  <dialog id="lessonModal" class="modal">
+    <div class="modal-card">
+      <button class="modal-close" id="lessonClose" aria-label="Close">×</button>
+      <div class="modal-top"><span class="modal-type" id="lessonType">LESSON</span><span id="lessonDifficulty">Beginner</span></div>
+      <h2 id="lessonTitle">Lesson</h2>
+      <p id="lessonDescription"></p>
+      <div class="lesson-meta"><span>◷ <b id="lessonDuration">45 min</b></span><span>⌘ <b id="lessonPrereqs">None</b></span></div>
+      <div class="lesson-columns">
+        <div><h4>What you'll learn</h4><ul id="lessonLearn"></ul></div>
+        <div><h4>Resources</h4><div id="lessonResources" class="mini-resources"></div></div>
+      </div>
+      <div class="modal-actions"><a class="btn btn-secondary" id="lessonResourceLink" href="#" target="_blank" rel="noreferrer">Open primary resource ↗</a><button class="btn btn-primary" id="completeLessonBtn">Mark as Complete ✓</button></div>
+    </div>
+  </dialog>
+
+  <dialog id="projectModal" class="modal">
+    <div class="modal-card">
+      <button class="modal-close" id="projectClose" aria-label="Close">×</button>
+      <div class="modal-top"><span class="modal-type">PROJECT</span><span id="projectDifficulty">Intermediate</span></div>
+      <h2 id="projectTitle">Project</h2>
+      <p id="projectDescription"></p>
+      <div class="lesson-meta"><span>◷ <b id="projectDuration">4–6 hours</b></span><span>◆ <b id="projectSkills">HTML, CSS</b></span></div>
+      <h4>Build checklist</h4>
+      <div id="projectChecklist" class="checklist"></div>
+      <div class="modal-actions"><span class="muted" id="projectProgress">0 / 0 complete</span><button class="btn btn-primary" id="completeProjectBtn">Mark Project Complete ✓</button></div>
+    </div>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
